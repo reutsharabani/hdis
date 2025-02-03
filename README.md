@@ -14,8 +14,10 @@ This implementation is a minimal proof of concept built using the Biff template.
 ### Data
 #### Raw Data
 - **Admissions**, **Patient Information**, **Lab-Tests**, **Lab-Results** -stored in **S3**.
-#### Derived Data
-- **Idle Patient Data** is stored in an **XTDB** database, derived from raw data.
+
+### Views (derived data)
+- **Idle Patient Data** - patients with no tests n the last 48 hours
+- **Active Patient Data** - patients with tests in the last 48 hours
 
 ### Server
 - Implemented in **Clojure**.
