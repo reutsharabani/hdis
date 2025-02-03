@@ -1,4 +1,4 @@
-# HDIS – Hospital Dormancy Information System
+# HDIS – Hospital Data Information System
 
 HDIS is a simple system for monitoring idle patients in a hospital.
 This implementation is a minimal proof of concept built using the Biff template.
