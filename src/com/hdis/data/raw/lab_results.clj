@@ -1,10 +1,13 @@
-(ns com.hdis.data.lab-results
+(ns com.hdis.data.raw.lab-results
   (:refer-clojure :exclude [load])
-  (:require [com.hdis.data.utils :as utils]))
+  (:require [com.hdis.data.utils :as utils]
+            [com.hdis.db :as db]))
 
+(def kind :hdis/lab-result)
+(def id-field :lab-result/result_id)
 (def lab-results-object-name "lab_results.csv")
 
-(defn- process-lab-result-record [lab-results-record]
+(defn process-record [lab-results-record]
   (->
    lab-results-record
    (dissoc :performed_date :performed_time)
@@ -13,10 +16,5 @@
                             (java.time.LocalDateTime/parse performed-time-str utils/datetime-formatter)))
    (utils/namespace-map :lab-result)))
 
-(defn load []
-  (->> lab-results-object-name
-       utils/load-if-needed
-       (map process-lab-result-record)))
-
-(comment
-  (first (load)))
+(defn query [ctx]
+  (utils/get-kind-data ctx kind))

@@ -2,4 +2,5 @@
 
 (def app-name "Hospital Data Integration System")
 
-(def refresh-interval-seconds 10)
+(def derived-data-refresh-interval-seconds 37)
+(def raw-data-refresh-interval-seconds 29)

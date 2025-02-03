@@ -1,6 +1,7 @@
 (ns com.hdis.db
   (:require
-   [xtdb.api :as xt]))
+   [xtdb.api :as xt]
+   [clojure.tools.logging :as log]))
 
 (defn xtdbize [kind id-field record]
   (def record* record)
@@ -17,10 +18,11 @@
   (xt/submit-tx node [[::xt/put (xtdbize kind id-field record)]]))
 
 (defn insert-records [ctx kind id-field records]
+  (log/info "inserting " (count records) " " kind " records")
   (doseq [record records]
     (insert-record ctx kind id-field record)))
 
 (defn read-records [ctx kind]
   (let [node (:biff.xtdb/node ctx)]
-    (xt/q node {:find  '[*]
+    (xt/q node '{:find  [*]
                 :where [[:hdis/kind kind]]})))
