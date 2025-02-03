@@ -17,7 +17,7 @@
                               [?lt :lab-test/patient_id ?p]
                               [?lt :lab-test/order-time ?ot]
                               ;; order-time is over two days ago
-                              [(> cutoff ?ot)]]}
+                              [(< cutoff ?ot)]]}
 
      (epoch-hours-ago 48)))
 
